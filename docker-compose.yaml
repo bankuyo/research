@@ -1,0 +1,17 @@
+version: '3'
+services:
+  jupyterlab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: root
+    container_name: research
+    working_dir: /home/jovyan/work
+    environment:
+      - JUPYTER_ENABLE_LAB=yes 
+    volumes:
+      - ./:/home/jovyan/work/
+    ports:
+      - "8888:8888"
+    command:
+      ['jupyter', 'lab', '--ip=0.0.0.0', '--allow-root', "--LabApp.token=''"]
